@@ -1,3 +1,25 @@
 body {
   font-size: 18px;
 }
+
+table {
+    margin-left:15%;
+    margin-right:15%;
+    border-collapse: collapse;
+    width: 75%;
+    }
+
+table, th, tr, td {
+    border: 1px solid black;
+    padding: 15px;
+
+}
+
+tr:nth-child(even){
+    background-color: gray;
+    color: white;
+}
+
+td {
+    text-align:center;
+}
