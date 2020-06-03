@@ -28,6 +28,8 @@
                 th:src="@{${event.picture}}"
                 width="100px" height="100px"
                 alt="Event Image"></td>
+            <td><a
+                    th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a></td>
         </tr>
     </th:block>
 </table>

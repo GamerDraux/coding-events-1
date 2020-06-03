@@ -27,6 +27,30 @@ public class Event {
         nextId++;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setNumberOfAttendees(int numberOfAttendees) {
+        this.numberOfAttendees = numberOfAttendees;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
     public String getName() {
         return name;
     }
