@@ -5,22 +5,33 @@
 
 <header th:replace="fragments :: header"></header>
 
+<hr>
+<div align="center" style="background-color:light-grey;">
 <form method="post">
+    <label>Name</label>
     <input type="text" name="aName"
            placeholder="Event Name">
+    <label>Date</label>
     <input type="text" name="aDate"
-           placeholder="Event Date"><br>
+           placeholder="Event Date"><br><br>
+    <label>Description</label><br>
     <textarea rows="4" cols="50" name="aDescription"
-              placeholder="Event Description"></textarea><br>
+              placeholder="Event Description"></textarea><br><br>
+    <label>Number of Attendees</label>
     <input type="number" name="aNumberOfAttendees"
-           placeholder="Number of Attendees" value="1">
+           placeholder="Number of Attendees" value="1"
+           min="0">
+    <label>Location</label>
     <input type="text" name="aLocation"
            placeholder="Event Address"><br>
+    <label>Picture URL</label>
     <input type="text" name="aPicture"
-           placeholder="Event Picture">
-    <input type="submit" value="Create">
+           placeholder="Event Picture"><br>
+    <input type="submit" value="Create"
+           style="background-color:green;">
 </form>
-
+</div>
+<hr>
 
 </body>
 </html>

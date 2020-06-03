@@ -5,6 +5,8 @@
 
     <header th:replace="fragments :: header"></header>
     <form method="post">
+        <p>Checkmark any items you would like to delete
+            from list, then click "Delete" button.</p>
          <div>
              <th:block th:each="event : ${events}">
                     <label>

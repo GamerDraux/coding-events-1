@@ -7,8 +7,10 @@
     <header th:replace="fragments :: header"></header>
 
     <form method="post" th:action="@{/events/edit}">
-        <input type="hidden" th:value="${event.id}"
+           <input type="hidden"
+                              th:value="${event.id}"
                name="eventId"/>
+
         <input type="text" name="aName"
                placeholder="Event Name"
                th:value="${event.name}">
@@ -20,7 +22,8 @@
                   th:value="${event.description}"></textarea><br>
         <input type="number" name="aNumberOfAttendees"
                placeholder="Number of Attendees"
-               th:value="${event.numberOfAttendees}">
+               th:value="${event.numberOfAttendees}"
+               min="0">
         <input type="text" name="aLocation"
                placeholder="Event Address"
                th:value="${event.location}"><br>
