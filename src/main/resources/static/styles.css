@@ -23,3 +23,9 @@ tr:nth-child(even){
 td {
     text-align:center;
 }
+
+.error {
+    color: red;
+    text-decoration: underline;
+    font-style: italic;
+    }
