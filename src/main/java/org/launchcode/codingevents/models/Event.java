@@ -15,6 +15,7 @@ public class Event {
     private String name;
     @NotBlank(message = "Event must have a date")
     private String date;
+    private DayOfWeek dayOfWeek;
     @Email(message= "Please enter a valid email address")
     private String contactEmail;
     @NotBlank(message = "Please provide a short " +
@@ -27,29 +28,33 @@ public class Event {
     private String location;
     private boolean registrationRequired;
     private String picture;
+    private EventType eventType;
     @Pattern(regexp ="[A-Za-z]{3}-[0-9]{3}",  message =
             "Event code must match the expected pattern: " +
                     "abc-123")
     private String eventCode;
 
     public Event(String name,
-                 String date,
+                 String date,  DayOfWeek dayOfWeek,
                  String contactEmail, String description,
                  int numberOfAttendees,
                  String location,
                  boolean registrationRequired,
-                 String picture, String eventCode){
+                 String picture, EventType eventType,
+                 String eventCode){
+        this();
         this.name= name;
         this.date= date;
+        this.dayOfWeek=dayOfWeek;
         this.contactEmail=contactEmail;
         this.description= description;
         this.numberOfAttendees = numberOfAttendees;
         this.location= location;
         this.registrationRequired= registrationRequired;
         this.picture=picture;
+        this.eventType=eventType;
         this.eventCode=eventCode;
-        this.id=nextId;
-        nextId++;
+
     }
 
     public Event (){
@@ -98,6 +103,14 @@ public class Event {
         this.eventCode = eventCode;
     }
 
+    public void setEventType(EventType eventType) {
+        this.eventType = eventType;
+    }
+
+    public void setDayOfWeek(DayOfWeek dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+    }
+
     public String getName() {
         return name;
     }
@@ -132,8 +145,16 @@ public class Event {
         return registrationRequired;
     }
 
+    public EventType getEventType() {
+        return eventType;
+    }
+
     public String getEventCode() {
         return eventCode;
+    }
+
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
     }
 
     @Override

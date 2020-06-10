@@ -5,62 +5,12 @@
 
 <header th:replace="fragments :: header"></header>
 
-<hr>
+
 
 <div align="center">
 <form method="post">
-    <label>Name</label>
-    <input th:field="${event.name}"
-           placeholder="Event Name">
-    <p class="error" th:errors="${event.name}"></p>
+   <nav th:replace="fragments :: formBody"></nav>
 
-    <label>Date</label>
-    <input th:field="${event.date}"
-           placeholder="Event Date">
-    <p class="error" th:errors="${event.date}"></p><br><br>
-
-    <label>Contact Email</label>
-    <input th:field="${event.contactEmail}"
-           placeholder="Contact Email">
-    <p class="error"
-       th:errors="${event.contactEmail}"></p><br><br>
-
-    <label>Description</label><br>
-    <textarea rows="4" cols="50"
-              th:field="${event.description}"
-              placeholder="Event Description"></textarea>
-    <p class="error"
-       th:errors="${event.description}"></p><br><br>
-
-    <label>Number of Attendees</label>
-    <input type="number"
-           th:field="${event.numberOfAttendees}"
-           placeholder="Number of Attendees" value="1"
-           min="0">
-    <p class="error"
-       th:errors="${event.numberOfAttendees}"></p>
-
-    <label>Location</label>
-    <input th:field="${event.location}"
-           placeholder="Event Address">
-    <p class="error" th:errors="${event.location}"></p><br>
-
-    <label>Registration Required</label>
-    <input
-            type="checkbox"
-            th:field="${event.registrationRequired}">
-    <p class="error"
-       th:errors="${event.registrationRequired}"></p>
-
-    <label>Picture URL</label>
-    <input th:field="${event.picture}"
-           placeholder="Event Picture">
-    <p class="error" th:errors="${event.picture}"></p><br>
-
-    <label>Event Code</label>
-    <input th:field="${event.eventCode}"
-           placeholder="Form: abc123">
-    <p class="error" th:errors="${event.eventCode}"></p>
 
     <input type="submit" value="Create"
            style="background-color:green;">
@@ -68,7 +18,6 @@
 
 </form>
 </div>
-<hr>
 
 </body>
 </html>

@@ -1,7 +1,9 @@
 package org.launchcode.codingevents.controllers;
 
 import org.launchcode.codingevents.data.EventData;
+import org.launchcode.codingevents.models.DayOfWeek;
 import org.launchcode.codingevents.models.Event;
+import org.launchcode.codingevents.models.EventType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -26,6 +28,9 @@ public class EventController {
 
     @GetMapping("create")
     public String displayCreateEventForm(Model model) {
+        model.addAttribute("types", EventType.values());
+        model.addAttribute("daysOfWeek",
+                DayOfWeek.values());
         model.addAttribute("title", "Create Event");
         model.addAttribute(new Event());
         return "events/create";
@@ -34,6 +39,7 @@ public class EventController {
     @PostMapping("create")
     public String processCreateEventForm(@ModelAttribute @Valid Event newEvent, Errors errors, Model model) {
         if(errors.hasErrors()){
+            model.addAttribute("types", EventType.values());
             model.addAttribute("title", "Create Event");
             return "events/create";
         }
@@ -62,6 +68,9 @@ public class EventController {
     public String displayEditForm(Model model,
                                   @PathVariable int eventId){
         Event editedEvent = EventData.getById(eventId);
+        model.addAttribute("types", EventType.values());
+        model.addAttribute("daysOfWeek",
+                DayOfWeek.values());
         model.addAttribute("title",
                 ("Edit Event: "+editedEvent.getName()+" " +
                         "(id="+editedEvent.getId()+")"));
@@ -70,21 +79,19 @@ public class EventController {
     }
 
     @PostMapping("edit")
-    public String processEditForm(int eventId,
-                                  String aName,
-                                  String aDate,
-                                  String aDescription,
-                                  int aNumberOfAttendees,
-                                  String aLocation,
-                                  String aPicture
+    public String processEditForm(int eventId,@ModelAttribute @Valid Event newEvent, Errors errors, Model model
                                   ){
+        model.addAttribute("types", EventType.values());
+        model.addAttribute("daysOfWeek",
+                DayOfWeek.values());
+        if(errors.hasErrors()){
+            model.addAttribute("types", EventType.values());
+            model.addAttribute("title", "Create Event");
+            return "events/edit";
+        }
         Event editedEvent = EventData.getById(eventId);
-        editedEvent.setName(aName);
-        editedEvent.setDate(aDate);
-        editedEvent.setDescription(aDescription);
-        editedEvent.setNumberOfAttendees(aNumberOfAttendees);
-        editedEvent.setLocation(aLocation);
-        editedEvent.setPicture(aPicture);
+        EventData.remove(EventData.getById(eventId).getId());
+        EventData.add(newEvent);
         return "redirect:";
     }
 }
