@@ -11,10 +11,7 @@ public class Event {
     private int id;
     private static int nextId = 1;
 
-    @Size(min  = 3, max = 50, message ="Event name must " +
-            "be" +
-            " " +
-            "between 3 and 50 characters")
+    @Size(min  = 3, max = 50, message ="Event name must be between 3 and 50 characters")
     @NotBlank(message = "Event name cannot be blank")
     private String name;
 
@@ -25,12 +22,10 @@ public class Event {
     @Email(message= "Please enter a valid email address")
     private String contactEmail;
 
-    @NotBlank(message = "Please provide a short " +
-            "description of the event")
+    @NotBlank(message = "Please provide a short description of the event")
     private String description;
 
-    @Min(message = "At least one attendee " +
-            "required", value = 1)
+    @Min(message = "At least one attendee required", value = 1)
     private int numberOfAttendees;
 
     @NotBlank(message = "Please provide an event location")
@@ -42,9 +37,7 @@ public class Event {
 
     private EventType eventType;
 
-    @Pattern(regexp ="[A-Za-z]{3}-[0-9]{3}",  message =
-            "Event code must match the expected pattern: " +
-                    "abc-123")
+    @Pattern(regexp ="[A-Za-z]{3}-[0-9]{3}",  message = "Event code must match the expected pattern: abc-123")
     private String eventCode;
 
     public Event(String name,
