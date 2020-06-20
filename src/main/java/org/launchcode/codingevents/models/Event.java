@@ -1,15 +1,19 @@
 package org.launchcode.codingevents.models;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.*;
 import java.util.Objects;
 
 
-
+@Entity
 public class Event {
 
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
 
     @Size(min  = 3, max = 50, message ="Event name must be between 3 and 50 characters")
     @NotBlank(message = "Event name cannot be blank")
@@ -18,7 +22,9 @@ public class Event {
     @NotBlank(message = "Event must have a date")
     private String date;
 
+
     private DayOfWeek dayOfWeek;
+
     @Email(message= "Please enter a valid email address")
     private String contactEmail;
 
@@ -62,10 +68,7 @@ public class Event {
 
     }
 
-    public Event (){
-        this.id = nextId;
-        nextId++;
-    }
+    public Event (){ }
 
     public void setName(String name) {
         this.name = name;

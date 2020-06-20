@@ -9,7 +9,7 @@
     <div align="center">
          <form method="post" th:action="@{/events/edit}">
                 <input type="hidden"
-                              th:value="${event.id}"
+                              th:value="${event.getId()}"
                name="eventId"/>
 
             <div th:replace="fragments :: formBody"></div>
