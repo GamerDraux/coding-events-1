@@ -1,34 +1,47 @@
 package org.launchcode.codingevents.models;
 
+
 import javax.validation.constraints.*;
-import java.util.Date;
 import java.util.Objects;
 
+
+
 public class Event {
+
     private int id;
-    private static int nextId =1;
+    private static int nextId = 1;
+
     @Size(min  = 3, max = 50, message ="Event name must " +
             "be" +
             " " +
             "between 3 and 50 characters")
     @NotBlank(message = "Event name cannot be blank")
     private String name;
+
     @NotBlank(message = "Event must have a date")
     private String date;
+
     private DayOfWeek dayOfWeek;
     @Email(message= "Please enter a valid email address")
     private String contactEmail;
+
     @NotBlank(message = "Please provide a short " +
             "description of the event")
     private String description;
+
     @Min(message = "At least one attendee " +
             "required", value = 1)
     private int numberOfAttendees;
+
     @NotBlank(message = "Please provide an event location")
     private String location;
+
     private boolean registrationRequired;
+
     private String picture;
+
     private EventType eventType;
+
     @Pattern(regexp ="[A-Za-z]{3}-[0-9]{3}",  message =
             "Event code must match the expected pattern: " +
                     "abc-123")
@@ -42,7 +55,6 @@ public class Event {
                  boolean registrationRequired,
                  String picture, EventType eventType,
                  String eventCode){
-        this();
         this.name= name;
         this.date= date;
         this.dayOfWeek=dayOfWeek;
@@ -58,8 +70,7 @@ public class Event {
     }
 
     public Event (){
-        this.numberOfAttendees=1;
-        this.id=nextId;
+        this.id = nextId;
         nextId++;
     }
 
