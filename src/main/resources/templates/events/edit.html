@@ -6,7 +6,7 @@
 <body>
     <header th:replace="fragments :: header"></header>
 
-    <div align="center">
+    <div>
          <form method="post" th:action="@{/events/edit}">
                 <input type="hidden"
                               th:value="${event.getId()}"
@@ -14,7 +14,9 @@
 
             <div th:replace="fragments :: formBody"></div>
 
-            <input type="submit" value="Edit Event">
+            <input class="btn btn-default" type="submit"
+             value="Edit
+             Event">
         </form>
     </div>
 </body>

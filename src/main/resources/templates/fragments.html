@@ -4,94 +4,126 @@
     <meta charset="UTF-8"/>
     <title>Coding Events</title>
     <link rel="stylesheet" th:href="@{/styles.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script th:src="@{/script.js}"></script>
 </head>
 <body>
 
 <nav th:fragment="header">
-    <h1 th:text="${title}">Coding Events</h1>
+    <h1 style="text-align:center" th:text="${title}">Coding
+    Events</h1>
     <ul>
         <li><a href="/events">All Events</a></li>
         <li><a href="/events/create">Create Event</a></li>
         <li><a href="/events/delete">Delete Events</a></li>
+        <li><a href="/eventCategories">Event Categories</a></li>
+        <li><a href="/eventCategories/create">Create New Category</a></li>
     </ul>
 </nav>
 
 <nav th:fragment="formBody">
     <hr>
-    <label>Name</label>
-    <input th:field="${event.name}" th:value="${event.name}"
+    <div class="form-group">
+        <label class="control-label">Name</label>
+             <input class="form-control"
+                    th:field="${event.name}"
+                     th:value="${event.name}"
            placeholder="Event Name">
-    <p class="error" th:errors="${event.name}"></p>
+        <p class="error" th:errors="${event.name}"></p>
+    </div>
 
-    <label>Date</label>
-    <input th:field="${event.date}" th:value="${event.date}"
+    <div class="form-group">
+    <label class="control-label">Date</label>
+    <input  class="form-control" th:field="${event.date}"
+            th:value="${event.date}"
            placeholder="Event Date">
-    <p class="error" th:errors="${event.date}"></p><br><br>
+    <p class="error" th:errors="${event.date}"></p>
+    </div>
 
-    <label>Day of the Week</label>
-    <select th:field="${event.dayOfWeek}">
+
+    <div class="form-group">
+    <label class="control-label">Day of the Week</label>
+    <select class="form-control"
+            th:field="${event.dayOfWeek}">
         <option th:each="day : ${daysOfWeek}"
                 th:value="${day}"
                 th:text="${day.displayName}"></option>
     </select>
+    </div>
 
-    <label>Contact Email</label>
-    <input th:field="${event.contactEmail}"
+    <div class="form-group">
+    <label class="control-label">Contact Email</label>
+    <input class="form-control" th:field="${event.contactEmail}"
            th:value="${event.contactEmail}"
            placeholder="Contact Email">
     <p class="error"
-       th:errors="${event.contactEmail}"></p><br><br>
+       th:errors="${event.contactEmail}"></p>
+    </div>
 
-    <label>Description</label><br>
-    <textarea rows="4" cols="50"
+    <div class="form-group">
+    <label class="control-label">Description</label><br>
+    <textarea class="form-control" rows="4" cols="50"
               th:field="${event.description}"
               th:value="${event.description}"
               placeholder="Event Description"></textarea>
     <p class="error"
-       th:errors="${event.description}"></p><br><br>
+       th:errors="${event.description}"></p>
+    </div>
 
-    <label>Number of Attendees</label>
-    <input type="number"
+    <div class="form-group">
+    <label class="control-label">Number of Attendees</label>
+    <input class="form-control" type="number"
            th:field="${event.numberOfAttendees}"
            th:value="${event.numberOfAttendees}"
            placeholder="Number of Attendees" value="1"
            min="0">
     <p class="error"
        th:errors="${event.numberOfAttendees}"></p>
+    </div>
 
-    <label>Location</label>
-    <input th:field="${event.location}"
+    <div class="form-group">
+    <label class="control-label">Location</label>
+    <input class="form-control" th:field="${event.location}"
            th:value="${event.location}"
            placeholder="Event Address">
-    <p class="error" th:errors="${event.location}"></p><br>
+    <p class="error" th:errors="${event.location}"></p>
+    </div>
 
-    <label>Registration Required</label>
-    <input
-            type="checkbox"
+    <div class="form-group">
+    <label class="control-label">Registration Required</label>
+    <input class="form-control"
+           type="checkbox"
             th:field="${event.registrationRequired}"
             th:value="${event.registrationRequired}">
     <p class="error"
        th:errors="${event.registrationRequired}"></p>
+    </div>
 
-    <label>Picture URL</label>
-    <input th:field="${event.picture}"
+    <div class="form-group">
+    <label class="control-label">Picture URL</label>
+    <input class="form-control" th:field="${event.picture}"
            th:value="${event.picture}"
            placeholder="Event Picture">
-    <p class="error" th:errors="${event.picture}"></p><br>
+    <p class="error" th:errors="${event.picture}"></p>
+                                </div>
 
-    <label>Event Code</label>
-    <input th:field="${event.eventCode}"
+    <div class="form-group">
+    <label class="control-label">Event Code</label>
+    <input class="form-control" th:field="${event.eventCode}"
            th:value="${event.eventCode}"
            placeholder="Form: abc123">
     <p class="error" th:errors="${event.eventCode}"></p>
+    </div>
 
-    <label>Type</label>
-    <select th:field="${event.eventType}">
+    <div class="form-group">
+    <label class="control-label">Type</label>
+    <select class="form-control" th:field="${event.eventType}">
         <option th:each="type : ${types}"
                 th:value="${type}"
                 th:text="${type.displayName}"></option>
     </select>
+    </div>
     <hr>
 </nav>
 
