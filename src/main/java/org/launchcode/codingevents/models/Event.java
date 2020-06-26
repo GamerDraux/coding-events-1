@@ -9,11 +9,8 @@ import java.util.Objects;
 
 
 @Entity
-public class Event {
+public class Event extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    private int id;
 
     @Size(min  = 3, max = 50, message ="Event name must be between 3 and 50 characters")
     @NotBlank(message = "Event name cannot be blank")
@@ -21,7 +18,6 @@ public class Event {
 
     @NotBlank(message = "Event must have a date")
     private String date;
-
 
     private DayOfWeek dayOfWeek;
 
@@ -142,8 +138,6 @@ public class Event {
         return numberOfAttendees;
     }
 
-    public int getId() { return id; }
-
     public String getContactEmail() {
         return contactEmail;
     }
@@ -164,31 +158,4 @@ public class Event {
         return dayOfWeek;
     }
 
-    @Override
-    public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", date='" + date + '\'' +
-                ", contactEmail='" + contactEmail + '\'' +
-                ", description='" + description + '\'' +
-                ", numberOfAttendees=" + numberOfAttendees +
-                ", location='" + location + '\'' +
-                ", picture='" + picture + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Event event = (Event) o;
-        return id == event.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }

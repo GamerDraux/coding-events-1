@@ -44,8 +44,7 @@
 
     <div class="form-group">
     <label class="control-label">Day of the Week</label>
-    <select class="form-control"
-            th:field="${event.dayOfWeek}">
+    <select class="form-control" th:field="${event.dayOfWeek}">
         <option th:each="day : ${daysOfWeek}"
                 th:value="${day}"
                 th:text="${day.displayName}"></option>

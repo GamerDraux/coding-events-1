@@ -4,25 +4,19 @@ package org.launchcode.codingevents.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
-public class EventCategory {
+public class EventCategory extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    private int id;
     private String name;
 
-    public EventCategory(int id, String name){
-        this.id=id;
+    public EventCategory(String name){
+        super();
         this.name=name;
     }
 
     public EventCategory(){}
-
-    public int getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -31,4 +25,6 @@ public class EventCategory {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }
