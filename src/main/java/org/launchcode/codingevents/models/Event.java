@@ -1,11 +1,12 @@
 package org.launchcode.codingevents.models;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.util.Objects;
 
 
 @Entity
@@ -21,11 +22,10 @@ public class Event extends AbstractEntity{
 
     private DayOfWeek dayOfWeek;
 
-    @Email(message= "Please enter a valid email address")
-    private String contactEmail;
-
-    @NotBlank(message = "Please provide a short description of the event")
-    private String description;
+    @OneToOne(cascade = CascadeType.ALL)
+    @Valid
+    @NotNull
+    private EventDetails eventDetails;
 
     @Min(message = "At least one attendee required", value = 1)
     private int numberOfAttendees;
@@ -37,29 +37,31 @@ public class Event extends AbstractEntity{
 
     private String picture;
 
-    private EventType eventType;
+    @ManyToOne
+    @NotNull(message = "Category is required.  If no categories are available, please create one in the Create New Category link above")
+    private EventCategory eventCategory;
 
     @Pattern(regexp ="[A-Za-z]{3}-[0-9]{3}",  message = "Event code must match the expected pattern: abc-123")
     private String eventCode;
 
     public Event(String name,
                  String date,  DayOfWeek dayOfWeek,
-                 String contactEmail, String description,
+                 EventDetails eventDetails,
                  int numberOfAttendees,
                  String location,
                  boolean registrationRequired,
-                 String picture, EventType eventType,
+                 String picture, EventCategory eventCategory,
                  String eventCode){
+        super();
         this.name= name;
         this.date= date;
         this.dayOfWeek=dayOfWeek;
-        this.contactEmail=contactEmail;
-        this.description= description;
+        this.eventDetails=eventDetails;
         this.numberOfAttendees = numberOfAttendees;
         this.location= location;
         this.registrationRequired= registrationRequired;
         this.picture=picture;
-        this.eventType=eventType;
+        this.eventCategory=eventCategory;
         this.eventCode=eventCode;
 
     }
@@ -72,14 +74,6 @@ public class Event extends AbstractEntity{
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public void setNumberOfAttendees(int numberOfAttendees) {
@@ -106,8 +100,8 @@ public class Event extends AbstractEntity{
         this.eventCode = eventCode;
     }
 
-    public void setEventType(EventType eventType) {
-        this.eventType = eventType;
+    public void setEventCategory(EventCategory eventCategory) {
+        this.eventCategory = eventCategory;
     }
 
     public void setDayOfWeek(DayOfWeek dayOfWeek) {
@@ -116,10 +110,6 @@ public class Event extends AbstractEntity{
 
     public String getName() {
         return name;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public String getLocation() {
@@ -138,16 +128,12 @@ public class Event extends AbstractEntity{
         return numberOfAttendees;
     }
 
-    public String getContactEmail() {
-        return contactEmail;
-    }
-
     public boolean isRegistrationRequired() {
         return registrationRequired;
     }
 
-    public EventType getEventType() {
-        return eventType;
+    public EventCategory getEventCategory() {
+        return eventCategory;
     }
 
     public String getEventCode() {
@@ -158,4 +144,11 @@ public class Event extends AbstractEntity{
         return dayOfWeek;
     }
 
+    public EventDetails getEventDetails() {
+        return eventDetails;
+    }
+
+    public void setEventDetails(EventDetails eventDetails) {
+        this.eventDetails = eventDetails;
+    }
 }

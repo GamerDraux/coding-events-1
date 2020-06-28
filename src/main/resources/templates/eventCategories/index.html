@@ -11,14 +11,16 @@
 <table class="table table-striped table-hover">
     <thead class="thead-dark">
     <tr>
-        <th scope="col>">Category Name</th>
+        <th scope="col">Category Name</th>
     </tr>
     </thead>
     <tbody>
     <th:block scope="row"
             th:each="category : ${categories}">
         <tr>
-            <td th:text="${category.name}"></td>
+            <td><a th:href="'/events?categoryId='+${category.id}"
+                    th:text="${category.name}"></a>
+                <span th:if="${category.events.size()>0}" th:text="'('+${category.events.size()}+' listed)'"></span></td>
          </tr>
     </th:block>
 

@@ -8,6 +8,8 @@
 
 
 <div>
+    <p th:if="${noCategories}"
+       th:text="There are no established event categories.  A new event will be unable to be saved.  Please create a new category before attempting to create an event."></p>
 <form class="form-horizontal" method="post">
    <nav th:replace="fragments :: formBody"></nav>
 
