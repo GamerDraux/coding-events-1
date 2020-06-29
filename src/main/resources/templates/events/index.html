@@ -14,38 +14,17 @@
     <thead class="thead-dark">
     <tr>
         <th scope="col">ID</th>
-        <th scope="col">Event Name</th>
-        <th scope="col">Event Date</th>
-        <th scope="col">Day</th>
-        <th scope="col">Contact Email</th>
-        <th scope="col">Event Description</th>
-        <th scope="col">Number of Attendees</th>
-        <th scope="col">Registration Required?</th>
-        <th scope="col">The hot new tech hangout</th>
-        <th scope="col">Category</th>
-        <th scope="col">Picture</th>
-        <th scope="col">Event Code</th>
+        <th scope="col">Event Name (click for details)</th>
         <th scope="col"></th>
+
     </tr>
     </thead>
     <tbody>
     <th:block scope="row" th:each="event : ${eventList}">
         <tr>
             <td th:text="${event.id}"></td>
-            <td th:text="${event.name}"></td>
-            <td th:text="${event.date}"></td>
-            <td th:text="${event.dayOfWeek.displayName}"></td>
-            <td th:text="${event.eventDetails.contactEmail}"></td>
-            <td th:text="${event.eventDetails.description}"></td>
-            <td th:text="${event.numberOfAttendees}"></td>
-            <td th:if="${event.registrationRequired}">Registration required.
-            </td>
-            <td th:if="${!event.registrationRequired}">No
-                registration required to attend.</td>
-            <td th:text="${event.location}"></td>
-            <td th:text="${event.eventCategory.name}"></td>
-            <td> <img th:src="@{${event.picture}}" width="100px" height="100px" alt="Event Image"></td>
-            <td th:text="${event.eventCode}"></td>
+            <td><a
+                    th:href="@{/events/details/{eventId}(eventId=${event.id})}" th:text="${event.name}"></a></td>
             <td><a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a></td>
         </tr>
     </th:block>

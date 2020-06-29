@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<header th:replace="fragments :: header"></header>
+
+<a th:href="'../../events/addTag?eventId=' +${event.id}">Add
+    tags to
+    this event</a>
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
+         <tr>
+             <th scope="col" th:text="${event.name}"></th>
+             <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="col"
+                th:text="'Date'"></td>
+            <td th:text="${event.date}"></td>
+        </tr>
+    <tr>
+        <td scope="col"
+            th:text="'Day of Week'"></td>
+        <td th:text="${dayOfWeek}"></td>
+    </tr>
+    <tr>
+        <td scope="col"
+            th:text="'Contact Email'"></td>
+        <td
+            th:text="${event.eventDetails.contactEmail}">
+        </td>
+    </tr>
+    <tr>
+        <td scope="col"
+            th:text="'Description'"></td>
+        <td th:text="${event
+        .eventDetails.description}"></td>
+    </tr>
+    <tr>
+        <td scope="col"
+            th:text="'Number of Attendees:'"></td>
+        <td th:text="${event
+            .numberOfAttendees}"></td>
+    </tr>
+    <tr>
+        <td scope="col"
+            th:text="'Location'"></td>
+        <td th:text="${event
+            .location}"></td>
+    </tr>
+    <tr>
+        <td scope="col"
+            th:if="${event.registrationRequired}">Registration is required for this event
+        </td>
+    </tr>
+    <tr>
+        <td scope="col"
+            th:if="${!event.picture.equals('')}"><img
+                th:src="@{${event.picture}}"
+                width="100px" height="100px"
+                th:alt="${event.picture}"></td>
+    </tr>
+    <tr>
+        <td scope="col"
+            th:text="'Category of Event'"></td>
+        <td th:text="
+            ${event.eventCategory.name}"></td>
+    </tr>
+    <tr>
+        <td scope="col"
+            th:text="'Event catalog code'"></td>
+        <td th:text="${event
+            .eventCode}"></td>
+    </tr>
+    <tr th:if="${tags}">
+        <td scope="col"
+            th:text="'Event tags: '"></td>
+        <td>
+               <span th:each="tag : ${tags}"
+                     th:text="'#'+${tag.name}+' '"></span></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

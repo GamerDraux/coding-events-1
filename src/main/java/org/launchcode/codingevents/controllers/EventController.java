@@ -3,9 +3,12 @@ package org.launchcode.codingevents.controllers;
 
 import org.launchcode.codingevents.data.EventRepository;
 import org.launchcode.codingevents.data.eventCategoryRepository;
+import org.launchcode.codingevents.data.tagRepository;
 import org.launchcode.codingevents.models.DayOfWeek;
 import org.launchcode.codingevents.models.Event;
 import org.launchcode.codingevents.models.EventCategory;
+import org.launchcode.codingevents.models.Tag;
+import org.launchcode.codingevents.models.dto.EventTagDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +33,8 @@ public class EventController {
     @Autowired
     private eventCategoryRepository eventCategoryRepository;
 
+    @Autowired
+    private org.launchcode.codingevents.data.tagRepository tagRepository;
     //findALL, save, findById
 
     @GetMapping
@@ -122,4 +127,45 @@ public class EventController {
         eventRepository.save(newEvent);
         return "redirect:";
     }
+
+    @GetMapping("addTag")
+    public String displayAddTagForm(@RequestParam Integer eventId, Model model){
+        Optional<Event> result= eventRepository.findById(eventId);
+        Event event =result.get();
+        model.addAttribute("title", "Add Tags to: "+event.getName());
+        model.addAttribute("tags", tagRepository.findAll());
+        EventTagDTO eventTag = new EventTagDTO();
+        eventTag.setEvent(event);
+        model.addAttribute("eventTag", eventTag);
+        return "events/addTag";
+    }
+
+    @PostMapping("addTag")
+    public String processAddTagForm(@ModelAttribute @Valid EventTagDTO eventTag, Model model, Errors errors) {
+        if (!errors.hasErrors()) {
+            Event event = eventTag.getEvent();
+            Tag tag = eventTag.getTag();
+            if (!event.getTags().contains(tag)) {
+                event.addTag(tag);
+                eventRepository.save(event);
+            }
+            return "redirect:";
+
+        }
+        return "redirect:addTag";
+    }
+
+    @GetMapping("details/{eventId}")
+    public String displayEventDetails(Model model, @PathVariable Integer eventId){
+        Event event = eventRepository.findById(eventId).get();
+        model.addAttribute("event", event);
+        model.addAttribute("dayOfWeek", event.getDayOfWeek().getDisplayName());
+        model.addAttribute("title", "Details for event: "+event.getName());
+        if (event.getTags().size()!=0) {
+            model.addAttribute("tags", event.getTags());
+        }
+        return "events/details";
+    }
+
+
 }

@@ -1,12 +1,11 @@
 package org.launchcode.codingevents.models;
 
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -16,6 +15,9 @@ public class Event extends AbstractEntity{
     @Size(min  = 3, max = 50, message ="Event name must be between 3 and 50 characters")
     @NotBlank(message = "Event name cannot be blank")
     private String name;
+
+    @ManyToMany
+    private final List<Tag> tags = new ArrayList<>();
 
     @NotBlank(message = "Event must have a date")
     private String date;
@@ -150,5 +152,13 @@ public class Event extends AbstractEntity{
 
     public void setEventDetails(EventDetails eventDetails) {
         this.eventDetails = eventDetails;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void addTag(Tag tag){
+        this.tags.add(tag);
     }
 }

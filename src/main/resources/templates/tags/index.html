@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+
+
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Tag Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block scope="row"
+                  th:each="tag : ${tags}">
+            <tr>
+                <td><div th:text="${tag.name}"></div></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</body>
+</html>
