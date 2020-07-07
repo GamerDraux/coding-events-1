@@ -1,7 +1,6 @@
 package org.launchcode.codingevents.controllers;
 
 
-import org.aspectj.lang.annotation.RequiredTypes;
 import org.launchcode.codingevents.data.eventCategoryRepository;
 import org.launchcode.codingevents.models.EventCategory;
 import org.springframework.beans.factory.annotation.Autowired;
