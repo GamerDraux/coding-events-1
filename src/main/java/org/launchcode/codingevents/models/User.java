@@ -8,10 +8,10 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class User extends AbstractEntity {
 
-    @NotNull
+    @NotNull(message="Username cannot be blank")
     private String username;
 
-    @NotNull
+    @NotNull(message="Password cannot be blank")
     private String pwHash;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
